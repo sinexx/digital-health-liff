@@ -1,4 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+Digital Health LIFF Mini App
+=================================
+
+This project is a LINE LIFF (LINE Front-end Framework) mini web application built with the Next.js Pages Router. It provides a landing hub with 4 core menus:
+
+1. 🤖 ผู้ช่วย AI (Assistant)
+2. 🎓 หลักสูตร & การอบรม (Training)
+3. 📚 คลังความรู้ (Knowledge)
+4. 📈 ประเมินผล & ใบรับรอง (Evaluation)
+
+Current status: Basic navigation pages + LIFF initialization scaffold (awaiting real LIFF ID).
+
+---
+
+Quick Start (Local)
+-------------------
+1. Install dependencies:
+```bash
+npm install
+```
+2. Create `.env.local`:
+```bash
+NEXT_PUBLIC_LIFF_ID=YOUR_LIFF_ID_HERE
+```
+3. Run dev server:
+```bash
+npm run dev
+```
+4. Open http://localhost:3000
+
+If opened outside LINE, LIFF login will redirect once a valid LIFF ID is set.
+
+---
+
+Creating a LIFF ID
+------------------
+1. Go to https://developers.line.biz/console/
+2. Create a Provider (if you don't have one)
+3. Create a Channel (Messaging API)
+4. In LIFF tab: Add LIFF App
+	- Size: Full
+	- Endpoint URL: (later your deployed Vercel URL, e.g. https://digital-health-liff.vercel.app)
+	- Scope: openid, profile (and others if needed later)
+5. Copy the LIFF ID → place into `.env.local` as `NEXT_PUBLIC_LIFF_ID`
+
+Re-run the dev server after changing environment variables.
+
+---
+
+Deploy on Vercel
+----------------
+1. Push this repository to GitHub
+2. Login to https://vercel.com with GitHub
+3. New Project → Import your repo
+4. Keep defaults (Build Command: `next build`, Output: `.next`)
+5. Deploy → note the production URL
+6. Add Environment Variable in Vercel Project Settings:
+	- Name: `NEXT_PUBLIC_LIFF_ID`
+	- Value: (your real LIFF ID)
+	- Apply to: Production + Preview
+7. Redeploy
+
+---
+
+Using LIFF SDK (Basics)
+-----------------------
+The app initializes LIFF in `pages/index.js`:
+```js
+await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID })
+```
+Common next steps:
+```js
+// Send a message back to the chat (only inside LIFF in LINE app)
+await liff.sendMessages([{ type: 'text', text: 'Hello from LIFF!' }]);
+
+// Close LIFF window
+liff.closeWindow();
+```
+
+---
+
+Project Scripts
+---------------
+```bash
+npm run dev     # Start development server
+npm run build   # Production build
+npm start       # Run built app
+```
+
+---
+
+Original Create Next App README (Reference)
+------------------------------------------
+This section below is the original scaffold reference from Create Next App.
 
 ## Getting Started
 
@@ -33,8 +126,8 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Vercel (Original Template Text)
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.

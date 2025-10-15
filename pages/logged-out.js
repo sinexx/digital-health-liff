@@ -1,11 +1,22 @@
 import Layout from "@/components/Layout";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import liff from "@line/liff";
+import { useRouter } from 'next/router';
 
 export default function LoggedOut() {
+  const router = useRouter();
+  const [showPopup, setShowPopup] = useState(false);
+
   useEffect(() => {
-    // optionally any cleanup on mount
-  }, []);
+    if (router.isReady) {
+      const { justLoggedOut } = router.query;
+      if (justLoggedOut === '1' || justLoggedOut === 'true') {
+        setShowPopup(true);
+        const t = setTimeout(() => setShowPopup(false), 3000);
+        return () => clearTimeout(t);
+      }
+    }
+  }, [router.isReady, router.query]);
 
   const handleLogin = async () => {
     const liffId = process.env.NEXT_PUBLIC_LIFF_ID;
@@ -35,6 +46,15 @@ export default function LoggedOut() {
           </div>
         </div>
       </div>
+
+      {showPopup ? (
+        <div style={{ position: 'fixed', left: 0, right: 0, top: 20, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
+          <div style={{ background: '#0ea5e9', color: '#fff', padding: '10px 16px', borderRadius: 8, boxShadow: '0 6px 18px rgba(0,0,0,.2)', pointerEvents: 'auto' }}>
+            ออกจากระบบเรียบร้อยแล้ว
+            <button onClick={() => setShowPopup(false)} style={{ marginLeft: 12, background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer' }}>ปิด</button>
+          </div>
+        </div>
+      ) : null}
     </Layout>
   );
 }

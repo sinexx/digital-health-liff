@@ -27,8 +27,8 @@ export default function Layout({ children, title = "Digital Health Academy — �
     } catch (err) {
       console.warn('logout cleanup failed', err);
     } finally {
-      // redirect to logged-out page so user can login again
-      window.location.replace('/logged-out');
+      // redirect to logged-out page so user can login again; add flag to show popup
+      window.location.replace('/logged-out?justLoggedOut=1');
     }
   };
 
@@ -60,7 +60,7 @@ export default function Layout({ children, title = "Digital Health Academy — �
 
               {menuOpen ? (
                 <div className="__avatar_dropdown" style={{ position: 'absolute', right: 0, top: 'calc(100% + 8px)', background: '#fff', color: '#0f172a', borderRadius: 8, boxShadow: '0 6px 20px rgba(0,0,0,.2)', minWidth: 180, overflow: 'hidden' }}>
-                  <Link href="#" style={{ display: 'block', padding: 10, borderBottom: '1px solid rgba(0,0,0,0.06)', textDecoration: 'none', color: 'inherit' }} onClick={() => setMenuOpen(false)}>โปรไฟล์</Link>
+                  <Link href="/profile" style={{ display: 'block', padding: 10, borderBottom: '1px solid rgba(0,0,0,0.06)', textDecoration: 'none', color: 'inherit' }} onClick={() => setMenuOpen(false)}>โปรไฟล์ของฉัน</Link>
                   <button onClick={handleLogout} style={{ display: 'block', width: '100%', padding: 10, border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer' }}>ออกจากระบบ</button>
                 </div>
               ) : null}

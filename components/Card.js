@@ -4,6 +4,7 @@ export default function Card({ title, desc, href, icon = null, style = {} }) {
   return (
     <Link
       href={href}
+      className="card fade-in-up"
       style={{
         display: "block",
         padding: 18,

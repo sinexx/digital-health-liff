@@ -6,7 +6,7 @@ export default function RichMenu() {
       {/* Training group */}
       <div style={{ marginBottom: 16 }}>
         <h3 style={{ margin: "12px 0", color: "#fff" }}>🎓 หลักสูตร & การอบรม</h3>
-        <div className="__richmenu_grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
+        <div className="__richmenu_grid stagger-children" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
           <Card icon="🎓" title="ตารางอบรม" desc="ดูตารางและรายละเอียด" href="/training/schedule" />
           <Card icon="📝" title="ลงทะเบียน" desc="แบบฟอร์มลงทะเบียน" href="/training/register" />
         </div>
@@ -15,7 +15,7 @@ export default function RichMenu() {
       {/* Knowledge group */}
       <div style={{ marginBottom: 16 }}>
         <h3 style={{ margin: "12px 0", color: "#fff" }}>📚 สื่อการเรียนรู้ / คลังความรู้</h3>
-        <div className="__richmenu_grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
+        <div className="__richmenu_grid stagger-children" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
           <Card icon="📄" title="เอกสาร" desc="ดาวน์โหลดเอกสาร คู่มือ" href="/knowledge/docs" />
           <Card icon="🎬" title="วิดีโอ" desc="วิดีโอการสอน/อบรม" href="/knowledge/videos" />
         </div>
@@ -24,7 +24,7 @@ export default function RichMenu() {
       {/* Evaluation group */}
       <div style={{ marginBottom: 16 }}>
         <h3 style={{ margin: "12px 0", color: "#fff" }}>📈 ประเมินผล & ใบรับรอง</h3>
-        <div className="__richmenu_grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
+        <div className="__richmenu_grid stagger-children" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
           <Card icon="📝" title="แบบประเมิน" desc="ทำแบบประเมินออนไลน์" href="/evaluation/form" />
           <Card icon="🎖️" title="ดาวน์โหลดเกียรติบัตร" desc="ดาวน์โหลดใบรับรอง/เกียรติบัตร" href="/evaluation/certs" />
         </div>

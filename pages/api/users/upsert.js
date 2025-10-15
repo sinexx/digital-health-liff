@@ -1,5 +1,5 @@
 import { getSupabaseServer } from '@/lib/supabaseServer';
-import jwt from 'jsonwebtoken';
+import { verifyLineIdToken } from '@/lib/lineVerify';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
@@ -10,12 +10,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'missing idToken or profile.userId' });
     }
 
-    // NOTE: Proper LIFF token verification should call LINE's token introspection endpoint
-    // or verify the JWT signature using your channel secret. Here we only decode for demo.
-    try {
-      jwt.decode(idToken); // decode without verification (placeholder)
-    } catch (e) {
-      return res.status(401).json({ error: 'invalid idToken' });
+    // Verify idToken signature and claims (issuer/audience)
+    const payload = await verifyLineIdToken(idToken);
+    const lineUserId = payload?.sub;
+    if (!lineUserId || lineUserId !== profile.userId) {
+      return res.status(401).json({ error: 'user_mismatch' });
     }
 
     const supabase = getSupabaseServer();

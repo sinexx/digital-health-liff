@@ -46,7 +46,7 @@ export default function Layout({ children, title = "Digital Health Academy — �
                 <div style={{ fontSize: 12, opacity: 0.8 }}>ผู้ใช้</div>
                 <div style={{ fontWeight: 600 }}>{user}</div>
               </div>
-              <div style={{ cursor: 'pointer' }} onClick={() => setMenuOpen(v => !v)}>
+              <div style={{ cursor: 'pointer' }} onClick={() => setMenuOpen(v => !v)} className="avatar-btn" aria-expanded={menuOpen}>
                 {avatar ? (
                   <div style={{ width: 44, height: 44, borderRadius: 9999, overflow: 'hidden', border: '2px solid rgba(255,255,255,0.12)' }}>
                     <Image src={avatar} alt="avatar" width={44} height={44} style={{ objectFit: 'cover' }} />
@@ -59,7 +59,7 @@ export default function Layout({ children, title = "Digital Health Academy — �
               </div>
 
               {menuOpen ? (
-                <div className="__avatar_dropdown" style={{ position: 'absolute', right: 0, top: 'calc(100% + 8px)', background: '#fff', color: '#0f172a', borderRadius: 8, boxShadow: '0 6px 20px rgba(0,0,0,.2)', minWidth: 180, overflow: 'hidden' }}>
+                <div className="__avatar_dropdown dropdown-open" style={{ position: 'absolute', right: 0, top: 'calc(100% + 8px)', background: '#fff', color: '#0f172a', borderRadius: 8, boxShadow: '0 6px 20px rgba(0,0,0,.2)', minWidth: 180, overflow: 'hidden' }}>
                   <Link href="/profile" style={{ display: 'block', padding: 10, borderBottom: '1px solid rgba(0,0,0,0.06)', textDecoration: 'none', color: 'inherit' }} onClick={() => setMenuOpen(false)}>โปรไฟล์ของฉัน</Link>
                   <button onClick={handleLogout} style={{ display: 'block', width: '100%', padding: 10, border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer' }}>ออกจากระบบ</button>
                 </div>

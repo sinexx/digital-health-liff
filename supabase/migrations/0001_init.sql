@@ -3,6 +3,7 @@ create table if not exists public.users (
   user_id text primary key,
   display_name text,
   picture_url text,
+  role text default 'user',
   email text,
   department text,
   position text,

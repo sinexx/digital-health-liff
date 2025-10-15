@@ -78,3 +78,63 @@ a {
   }
 }
 
+/* Animations and utility classes */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastSlideOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-12px); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 420ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.card {
+  transition: transform 180ms cubic-bezier(.2,.9,.2,1), box-shadow 180ms ease, opacity 220ms ease;
+  will-change: transform, opacity;
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+}
+
+.avatar-btn {
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, opacity 220ms ease;
+}
+.avatar-btn:active {
+  transform: scale(.98);
+}
+
+.dropdown-open {
+  animation: fadeInUp 260ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.toast {
+  animation: toastSlideIn 320ms cubic-bezier(.2,.9,.2,1) both;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+.toast--closing {
+  animation: toastSlideOut 240ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+/* utility to stagger entrance slightly when applied to lists */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeInUp 420ms cubic-bezier(.2,.9,.2,1) forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 60ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 120ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 180ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 240ms; }
+
+

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Layout({ children, title = "Digital Health Academy", user = "บุคลากร" }) {
+export default function Layout({ children, title = "Digital Health Academy — หน้าหลัก", user = "บุคลากร" }) {
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(180deg,#0891b2,#0f172a)", color: "#fff" }}>
       <div style={{ maxWidth: 960, margin: "0 auto", padding: 20 }}>

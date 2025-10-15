@@ -25,12 +25,14 @@ export default function LoggedOut() {
   };
 
   return (
-    <Layout title="ออกจากระบบแล้ว">
-      <div style={{ padding: 24, color: '#fff' }}>
-        <h2>คุณได้ออกจากระบบแล้ว</h2>
-        <p>คลิกปุ่มด้านล่างเพื่อเข้าสู่ระบบอีกครั้ง</p>
-        <div style={{ marginTop: 12 }}>
-          <button onClick={handleLogin} style={{ padding: '10px 14px', borderRadius: 8, border: 'none', background: '#0ea5e9', color: '#fff', cursor: 'pointer' }}>เข้าสู่ระบบใหม่</button>
+    <Layout title="ออกจากระบบแล้ว" showHeader={false}>
+      <div style={{ padding: 24, color: '#fff', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ maxWidth: 720, textAlign: 'center' }}>
+          <h2 style={{ fontSize: 28, marginBottom: 6 }}>คุณได้ออกจากระบบแล้ว</h2>
+          <p style={{ marginBottom: 18 }}>คลิกปุ่มด้านล่างเพื่อเข้าสู่ระบบอีกครั้ง</p>
+          <div>
+            <button onClick={handleLogin} style={{ padding: '12px 18px', borderRadius: 8, border: 'none', background: '#0ea5e9', color: '#fff', cursor: 'pointer' }}>เข้าสู่ระบบใหม่</button>
+          </div>
         </div>
       </div>
     </Layout>

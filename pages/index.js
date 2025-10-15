@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
-import Link from "next/link";
 import Layout from "@/components/Layout";
 import RichMenu from "@/components/RichMenu";
 
@@ -68,29 +67,11 @@ export default function Home() {
     );
   }
 
-  const Card = ({ title, desc, href }) => (
-    <Link
-      href={href}
-      style={{
-        display: "block",
-        padding: 16,
-        borderRadius: 12,
-        background: "#0ea5e9",
-        color: "#fff",
-        textDecoration: "none",
-        boxShadow: "0 6px 16px rgba(0,0,0,.15)",
-      }}
-    >
-      <div style={{ fontSize: 18, fontWeight: 700 }}>{title}</div>
-      <div style={{ opacity: 0.9, marginTop: 6 }}>{desc}</div>
-    </Link>
-  );
+  // Homepage uses RichMenu component for cards
 
   return (
-    <Layout>
-      <h1 style={{ marginTop: 16, fontSize: 20, fontWeight: 700 }}>
-        ศูนย์รวม 4 เมนู: ผู้ช่วย AI · หลักสูตร · คลังความรู้ · ประเมินผล
-      </h1>
+    <Layout user={name}>
+      <h1 style={{ marginTop: 16, fontSize: 20, fontWeight: 700 }}>หน้าหลัก</h1>
 
       <RichMenu />
     </Layout>

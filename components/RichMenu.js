@@ -3,11 +3,6 @@ import Card from "./Card";
 export default function RichMenu() {
   return (
     <div style={{ marginTop: 16 }}>
-      {/* AI */}
-      <div style={{ marginBottom: 12 }}>
-        <Card title="🤖 ผู้ช่วย AI เพื่อการเรียนรู้" desc="ถาม-ตอบ สรุป แปล ร่างแนวคิดอบรม" href="/assistant" />
-      </div>
-
       {/* Training group */}
       <div style={{ marginBottom: 16 }}>
         <h3 style={{ margin: "12px 0", color: "#fff" }}>🎓 หลักสูตร & การอบรม</h3>

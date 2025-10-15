@@ -7,13 +7,28 @@ export default function Layout({ children, title = "Digital Health Academy â€” à
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    if (typeof window !== "undefined" && window.liff && window.liff.isLoggedIn && window.liff.isLoggedIn()) {
-      window.liff.logout();
-      // optionally redirect out of LIFF or reload
-      window.location.reload();
-    } else {
-      // fallback: just reload
-      window.location.reload();
+    if (typeof window === "undefined") return;
+
+    try {
+      // Clear local/session storage
+      try { localStorage.clear(); } catch (e) { /* ignore */ }
+      try { sessionStorage.clear(); } catch (e) { /* ignore */ }
+
+      // Clear Cache Storage (most PWAs use this)
+      if (window.caches && typeof window.caches.keys === 'function') {
+        window.caches.keys().then(keys => {
+          keys.forEach(k => window.caches.delete(k));
+        }).catch(() => {});
+      }
+
+      if (window.liff && window.liff.isLoggedIn && window.liff.isLoggedIn()) {
+        window.liff.logout();
+      }
+    } catch (err) {
+      console.warn('logout cleanup failed', err);
+    } finally {
+      // replace location so back button won't return to authenticated state
+      window.location.replace(window.location.origin + window.location.pathname);
     }
   };
 

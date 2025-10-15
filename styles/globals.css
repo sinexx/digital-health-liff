@@ -40,3 +40,41 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Responsive helpers for the app layout */
+@media (max-width: 640px) {
+  body {
+    font-size: 15px;
+  }
+
+  /* Make the main container use full width with padding */
+  .__app_container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  header {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  /* RichMenu grid becomes single column on small screens */
+  .__richmenu_grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Avatar / menu: place avatar to left of username for compact header */
+  .__header_user_row {
+    flex-direction: row-reverse !important;
+    gap: 8px !important;
+    align-items: center !important;
+  }
+
+  /* Dropdown should be full width under avatar on mobile */
+  .__avatar_dropdown {
+    right: 8px !important;
+    left: 8px !important;
+    top: calc(100% + 8px) !important;
+  }
+}
+

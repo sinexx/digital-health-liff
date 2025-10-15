@@ -30,7 +30,7 @@ export default function Home() {
         setReady(true);
       }
     })();
-  }, []);
+  }, [liffId]);
 
   if (!ready) return <div style={{ padding: 20 }}>กำลังโหลด...</div>;
 

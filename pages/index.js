@@ -23,9 +23,21 @@ export default function Home() {
           liff.login();
           return; // หน้าจะ reload หลัง login
         }
-  const p = await liff.getProfile();
-  setName(p.displayName);
-  setAvatar(p.pictureUrl || null);
+        const p = await liff.getProfile();
+        setName(p.displayName);
+        setAvatar(p.pictureUrl || null);
+
+        // upsert profile to backend
+        const idToken = liff.getIDToken && liff.getIDToken();
+        try {
+          await fetch('/api/users/upsert', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idToken, profile: { userId: p.userId, displayName: p.displayName, pictureUrl: p.pictureUrl } }),
+          });
+        } catch (e) {
+          console.warn('upsert profile failed', e);
+        }
       } catch (err) {
         console.error("LIFF init error", err);
         setError(err?.message || "ไม่สามารถเริ่มต้น LIFF ได้");

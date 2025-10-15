@@ -27,8 +27,8 @@ export default function Layout({ children, title = "Digital Health Academy â€” à
     } catch (err) {
       console.warn('logout cleanup failed', err);
     } finally {
-      // replace location so back button won't return to authenticated state
-      window.location.replace(window.location.origin + window.location.pathname);
+      // redirect to logged-out page so user can login again
+      window.location.replace('/logged-out');
     }
   };
 

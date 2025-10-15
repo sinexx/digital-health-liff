@@ -5,6 +5,7 @@ import RichMenu from "@/components/RichMenu";
 
 export default function Home() {
   const [name, setName] = useState("บุคลากร");
+  const [avatar, setAvatar] = useState(null);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState(null);
   const liffId = process.env.NEXT_PUBLIC_LIFF_ID;
@@ -22,8 +23,9 @@ export default function Home() {
           liff.login();
           return; // หน้าจะ reload หลัง login
         }
-        const p = await liff.getProfile();
-        setName(p.displayName);
+  const p = await liff.getProfile();
+  setName(p.displayName);
+  setAvatar(p.pictureUrl || null);
       } catch (err) {
         console.error("LIFF init error", err);
         setError(err?.message || "ไม่สามารถเริ่มต้น LIFF ได้");
@@ -70,7 +72,7 @@ export default function Home() {
   // Homepage uses RichMenu component for cards
 
   return (
-    <Layout user={name}>
+    <Layout user={name} avatar={avatar}>
       <h1 style={{ marginTop: 16, fontSize: 20, fontWeight: 700 }}>หน้าหลัก</h1>
 
       <RichMenu />

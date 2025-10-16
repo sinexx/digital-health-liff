@@ -1,8 +1,9 @@
+import Layout from "@/components/LayoutTailwind";
 import CardLink from "@/components/CardLink";
 
 export default function Home() {
   return (
-    <>
+    <Layout>
       <section className="mb-5">
         <h2 className="text-xl font-semibold text-slate-900">
           ศูนย์รวม 4 เมนู: ผู้ช่วย AI · หลักสูตร · คลังความรู้ · ประเมินผล
@@ -18,6 +19,6 @@ export default function Home() {
         <CardLink href="/knowledge"  title="สื่อการเรียนรู้ / คลังความรู้" desc="เอกสาร วิดีโอ คู่มือ มาตรฐาน และ FAQ" />
         <CardLink href="/evaluation" title="ประเมินผล & ใบรับรอง" desc="ทำแบบประเมิน ดาวน์โหลดเกียรติบัตร ดูสถิติ" />
       </section>
-    </>
+    </Layout>
   );
 }

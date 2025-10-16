@@ -1,9 +1,8 @@
-import Layout from "@/components/Layout";
 import Link from "next/link";
 
 export default function KnowledgeIndex() {
   return (
-    <Layout title="สื่อการเรียนรู้ / คลังความรู้">
+    <>
       <h1>สื่อการเรียนรู้ / คลังความรู้</h1>
       <p>เลือกเมนูย่อย</p>
       <ul style={{ marginTop: 12 }}>
@@ -14,6 +13,6 @@ export default function KnowledgeIndex() {
           <Link href="/knowledge/videos">วิดีโอ</Link>
         </li>
       </ul>
-    </Layout>
+    </>
   );
 }

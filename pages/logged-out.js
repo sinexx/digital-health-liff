@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import { useEffect, useState } from "react";
 import liff from "@line/liff";
 import { useRouter } from 'next/router';
@@ -42,7 +41,7 @@ export default function LoggedOut() {
   };
 
   return (
-    <Layout title="ออกจากระบบแล้ว" showHeader={false}>
+    <>
       <div style={{ padding: 24, color: '#fff', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ maxWidth: 720, textAlign: 'center' }}>
           <h2 style={{ fontSize: 28, marginBottom: 6 }}>คุณได้ออกจากระบบแล้ว</h2>
@@ -61,6 +60,6 @@ export default function LoggedOut() {
           </div>
         </div>
       ) : null}
-    </Layout>
+    </>
   );
 }

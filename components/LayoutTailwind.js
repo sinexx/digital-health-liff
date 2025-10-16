@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function Layout({ children }) {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
@@ -11,11 +9,6 @@ export default function Layout({ children }) {
             <div>
               <p className="text-xs text-slate-500">กลุ่มงานสุขภาพดิจิทัล</p>
               <h1 className="text-base font-semibold text-slate-900">Digital Health Academy</h1>
-              <nav className="mt-1 text-sm text-slate-600 flex gap-4">
-                <Link href="/" className="hover:text-slate-900">หน้าหลัก</Link>
-                <Link href="/files" className="hover:text-slate-900">ไฟล์เผยแพร่</Link>
-                <Link href="/about" className="hover:text-slate-900">เกี่ยวกับ</Link>
-              </nav>
             </div>
           </div>
           <div className="text-right">

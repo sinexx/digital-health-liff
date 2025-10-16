@@ -1,6 +1,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --accent: #06b6d4; /* cyan-500 */
+  --accent-strong: #0891b2; /* cyan-700 */
+  --card-bg: #06a6d6;
+  --muted: rgba(255,255,255,0.85);
+  --container-max: 980px;
+  --gutter: 20px;
+  --card-radius: 12px;
+  --font-body: "Inter","Noto Sans Thai",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,15 +27,14 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
+/* Basic reset without overriding intended colors */
+*, *::before, *::after {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 a {
@@ -78,6 +85,79 @@ a {
   }
 }
 
+/* App container and header nav */
+.__app_container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--gutter);
+}
+
+header {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+header .site-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+header nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background 180ms ease, color 180ms ease;
+}
+header nav a:hover {
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+}
+
+/* RichMenu grid: consistent card sizes and responsive behavior */
+.__richmenu_grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items: stretch;
+}
+
+/* Cards: uniform visual style and accessible focus */
+.card {
+  transition: transform 180ms cubic-bezier(.2,.9,.2,1), box-shadow 180ms ease, opacity 220ms ease, background 160ms ease;
+  will-change: transform, opacity;
+  min-height: 120px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: var(--card-radius);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  box-shadow: 0 2px 14px rgba(2,6,23,0.32);
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 10px 36px rgba(2,6,23,0.45);
+}
+.card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(3,105,161,0.18);
+}
+
+.card .title { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: white; }
+.card .desc { margin-top: 6px; opacity: 0.9; color: var(--muted); }
+
+/* Avatar/menu spacing */
+.avatar-btn { padding: 4px; border-radius: 50%; }
+
+/* Toast and small utilities */
+.toast { animation: toastSlideIn 320ms cubic-bezier(.2,.9,.2,1) both; }
+
+@media (max-width: 420px) {
+  .__app_container { padding-left: 12px; padding-right: 12px; }
+  .card { min-height: 100px; padding: 14px; }
+}
+
 /* Animations and utility classes */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(10px); }
@@ -99,12 +179,13 @@ a {
 }
 
 .card {
+  /* keep the transition properties consistent for any later overrides */
   transition: transform 180ms cubic-bezier(.2,.9,.2,1), box-shadow 180ms ease, opacity 220ms ease;
   will-change: transform, opacity;
 }
 .card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 10px 36px rgba(2,6,23,0.45);
 }
 
 .avatar-btn {

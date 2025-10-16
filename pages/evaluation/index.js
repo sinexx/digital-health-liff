@@ -1,9 +1,8 @@
-import Layout from "@/components/Layout";
 import Link from "next/link";
 
 export default function EvaluationIndex() {
   return (
-    <Layout title="ประเมินผล & ใบรับรอง">
+    <>
       <h1>ประเมินผล & ใบรับรอง</h1>
       <p>เลือกเมนูย่อย</p>
       <ul style={{ marginTop: 12 }}>
@@ -14,6 +13,6 @@ export default function EvaluationIndex() {
           <Link href="/evaluation/certs">ดาวน์โหลดเกียรติบัตร</Link>
         </li>
       </ul>
-    </Layout>
+    </>
   );
 }

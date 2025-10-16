@@ -1,3 +1,48 @@
+# digital-health-liff
+
+Small Next.js LIFF-based app with Supabase backend. This README covers environment variables, DB migrations, tests and deployment.
+
+## Tech
+- Next.js (Pages Router)
+- React
+- LIFF (`@line/liff`)
+- Supabase (Postgres + Storage)
+- `jose` for idToken verification
+
+## Required environment variables
+- `NEXT_PUBLIC_LIFF_ID` (client)
+- `LINE_CHANNEL_ID` (server)
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY` (server-only)
+- `ADMIN_USER_IDS` (owner allowlist, comma separated)
+- `NEXT_PUBLIC_OWNER_USER_ID` (optional, client-side owner UI)
+
+Create `.env.local` for local development with the above values.
+
+## Migrations
+SQL migrations are in `supabase/migrations/` — apply them in your Supabase project to create `users` and `user_settings` tables and RLS policies.
+
+## Run locally
+1. Install deps: `npm install`
+2. Create `.env.local`
+3. Start dev server: `npm run dev`
+
+## Tests
+- Unit/integration tests: `npm test`
+- Playwright E2E: `npm run test:e2e` (ensure dev server running at `http://localhost:3000`)
+
+## Accessibility
+We include `pa11y-ci` for automated accessibility checks. Install and run `npx pa11y-ci --config .pa11yci.json` or use Lighthouse in Chrome DevTools.
+
+## Deployment
+1. Push repo to GitHub
+2. Import repo into Vercel
+3. Add required environment variables in Vercel (ensure `SUPABASE_SERVICE_ROLE_KEY` is secret)
+4. Deploy and open the site
+
+## Notes
+- Keep service role key secret. Do not commit it.
+- Ensure LIFF app has `openid` scope so `liff.getIDToken()` returns a token.
 Digital Health LIFF Mini App
 =================================
 

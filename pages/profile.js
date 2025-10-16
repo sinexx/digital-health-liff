@@ -19,6 +19,12 @@ export default function MyProfile() {
         setAvatar(p.pictureUrl || null);
         setName(p.displayName || '');
         const idToken = liff.getIDToken && liff.getIDToken();
+        if (!idToken) {
+          // Most likely LIFF app scopes do not include "openid". Force re-login to refresh consent/session.
+          alert('ยังไม่ได้รับสิทธิ์ openid สำหรับ idToken จะพาไปเข้าสู่ระบบอีกครั้ง');
+          liff.login();
+          return;
+        }
         const r = await fetch(`/api/profile?idToken=${encodeURIComponent(idToken)}`);
         if (r.ok) {
           const d = await r.json();
@@ -40,12 +46,23 @@ export default function MyProfile() {
 
   const save = async () => {
     const idToken = liff.getIDToken && liff.getIDToken();
+    if (!idToken) {
+      alert('ไม่พบ idToken กรุณาเข้าสู่ระบบอีกครั้ง');
+      liff.login();
+      return;
+    }
     const rs = await fetch('/api/profile', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ idToken, profile: form }),
     });
-    if (rs.ok) alert('บันทึกโปรไฟล์แล้ว'); else alert('บันทึกไม่สำเร็จ');
+    if (rs.ok) {
+      alert('บันทึกโปรไฟล์แล้ว');
+    } else {
+      let msg = 'บันทึกไม่สำเร็จ';
+      try { const j = await rs.json(); if (j?.error) msg += `: ${j.error}`; } catch (_) {}
+      alert(msg);
+    }
   };
 
   if (!ready) return <div style={{ padding: 20 }}>กำลังโหลด...</div>;

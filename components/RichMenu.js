@@ -29,6 +29,14 @@ export default function RichMenu() {
           <Card icon="🎖️" title="ดาวน์โหลดเกียรติบัตร" desc="ดาวน์โหลดใบรับรอง/เกียรติบัตร" href="/evaluation/certs" />
         </div>
       </div>
+
+      {/* Public Files */}
+      <div style={{ marginBottom: 16 }}>
+        <h3 style={{ margin: "12px 0", color: "#fff" }}>📂 ไฟล์เผยแพร่</h3>
+        <div className="__richmenu_grid stagger-children" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
+          <Card icon="📂" title="ไฟล์เผยแพร่" desc="ดาวน์โหลดเอกสารต่างๆ" href="/files" />
+        </div>
+      </div>
     </div>
   );
 }

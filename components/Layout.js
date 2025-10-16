@@ -40,6 +40,11 @@ export default function Layout({ children, title = "Digital Health Academy — �
             <div>
               <div style={{ fontSize: 22, fontWeight: 700 }}>{title}</div>
               <div style={{ opacity: 0.8 }}>กลุ่มงานสุขภาพดิจิทัล</div>
+              <nav style={{ marginTop: 6, display: 'flex', gap: 12, fontSize: 14 }}>
+                <Link href="/">หน้าหลัก</Link>
+                <Link href="/files">ไฟล์เผยแพร่</Link>
+                <Link href="/about">เกี่ยวกับ</Link>
+              </nav>
             </div>
             <div className="__header_user_row" style={{ textAlign: "right", display: 'flex', alignItems: 'center', gap: 12, position: 'relative' }}>
               <div style={{ textAlign: 'right' }}>
